@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siyuan (Jason) Zhang | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        tech: {
+                            dark: '#0f172a',
+                            blue: '#0ea5e9',
+                            purple: '#7c3aed',
+                            gradient: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0ea5e9 100%)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .profile-pic {
+            transition: all 0.3s ease;
+            border: 3px solid rgba(14, 165, 233, 0.5);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+        }
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
+        }
+        .section-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+            border: 1px solid rgba(14, 165, 233, 0.5);
+        }
+        .skill-badge {
+            transition: all 0.2s ease;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            background: rgba(14, 165, 233, 0.3) !important;
+            color: white !important;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #0ea5e9;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .timeline-item:not(:last-child):after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background-color: #7dd3fc;
+        }
+        .tech-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0ea5e9 100%);
+        }
+        .project-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .dice-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+        }
+        .dice-btn:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(14, 165, 233, 0.7);
+        }
+        .tech-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-tech-dark text-gray-200 font-sans">
+    <div class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="tech-nav fixed w-full z-50">
+            <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-laptop-code text-2xl text-tech-blue"></i>
+                    <span class="text-xl font-semibold text-white">Siyuan Zhang</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link py-2 text-white hover:text-tech-blue">About</a>
+                    <a href="#experience" class="nav-link py-2 text-white hover:text-tech-blue">Experience</a>
+                    <a href="#education" class="nav-link py-2 text-white hover:text-tech-blue">Education</a>
+                    <a href="#skills" class="nav-link py-2 text-white hover:text-tech-blue">Skills</a>
+                    <a href="#projects" class="nav-link py-2 text-white hover:text-tech-blue">Projects</a>
+                </div>
+                <button class="md:hidden focus:outline-none text-white">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="about" class="pt-32 pb-20 tech-gradient">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
+                    <div class="relative">
+                        <img id="profile-pic" src="images/miko.jpeg" alt="Siyuan Zhang" class="w-64 h-64 rounded-full profile-pic">
+                        <button id="change-pic-btn" class="absolute bottom-0 right-0 dice-btn text-white rounded-full p-3 shadow-lg transform transition-all duration-500 hover:shadow-xl">
+                            <i class="fas fa-dice text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white glow-text">Siyuan (Jason) Zhang</h1>
+                    <p class="text-xl mb-6 text-tech-blue font-medium">Software Engineer | Machine Learning Specialist</p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-8">
+                        <a href="mailto:jason4huare@gmail.com" class="bg-white text-tech-dark hover:bg-gray-100 px-6 py-2 rounded-full font-medium flex items-center transition-all hover:shadow-lg">
+                            <i class="fas fa-envelope mr-2"></i> Email
+                        </a>
+                        <a href="https://www.linkedin.com/in/siyuan-zhang-8784a8153" target="_blank" class="bg-tech-blue text-white hover:bg-blue-600 px-6 py-2 rounded-full font-medium flex items-center transition-all hover:shadow-lg">
+                            <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/Jasonzzzz28" target="_blank" class="bg-tech-dark text-white hover:bg-gray-800 border border-tech-blue px-6 py-2 rounded-full font-medium flex items-center transition-all hover:shadow-lg">
+                            <i class="fab fa-github mr-2"></i> GitHub
+                        </a>
+                    </div>
+                    <p class="text-lg text-gray-300 max-w-2xl">
+                        Backend software engineer specializing in distributed systems, microservices architecture, and machine learning solutions. 
+                        Passionate about building scalable infrastructure and implementing AI technologies to solve complex business challenges.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-6 py-12">
+            <!-- Experience Section -->
+            <section id="experience" class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-tech-blue flex items-center glow-text">
+                    <i class="fas fa-briefcase mr-4"></i> Professional Experience
+                </h2>
+                
+                <div class="space-y-8">
+                    <!-- PayPal Full-time -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-white">Software Engineer</h3>
+                                    <h4 class="text-lg text-tech-blue">PayPal - Credit Acquisition BNPL Team</h4>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-tech-blue text-white px-3 py-1 rounded-full text-sm font-medium">Jul 2021 - Mar 2024</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Developed and maintained asynchronous processing and retry systems for notifying credit application results, utilizing ActiveMQ, Java Message Service (JMS), and Spring Batch.
+                                    </p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Implemented idempotency for async API endpoints, reducing unprocessed applications by 70% and manual remediation time by 80%.
+                                    </p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Designed and implemented authorization in domain-private APIs using JSON Web Token to enhance data security.
+                                    </p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Designed, implemented, tested, and deployed a microservice component with Spring Boot for processing cloud events from upstream utilizing CloudEvents SDK.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PayPal Internship -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-white">Software Engineer Intern</h3>
+                                    <h4 class="text-lg text-tech-blue">PayPal - Credit Acquisition Revolving Credit Team</h4>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-tech-blue text-white px-3 py-1 rounded-full text-sm font-medium">Jun 2020 - Aug 2020</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Developed new microservice features for PayPal and Venmo credit accounts to enable automated handling of pending or confirmed fraud cases.
+                                    </p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Automated system failure remediation, saving 4+ hours of lost productivity per failure case and reducing reliance on manual intervention.
+                                    </p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Utilized Jenkins CI/CD to build and test Maven projects, conduct canary testing, and deploy code to production.
+                                    </p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <i class="fas fa-check-circle text-tech-blue"></i>
+                                    </div>
+                                    <p class="ml-3 text-gray-300">
+                                        Recognized for exceptional adaptability and effective communication, receiving a return offer for outstanding performance.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-tech-blue flex items-center glow-text">
+                    <i class="fas fa-graduation-cap mr-4"></i> Education
+                </h2>
+                
+                <div class="space-y-6">
+                    <!-- NYU -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-white">New York University</h3>
+                                    <h4 class="text-lg text-tech-blue">M.S., Computer Engineering</h4>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-tech-blue text-white px-3 py-1 rounded-full text-sm font-medium">2024 - Present</span>
+                                    <span class="ml-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">GPA: 4.0/4.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UMD -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-white">University of Maryland at College Park</h3>
+                                    <h4 class="text-lg text-tech-blue">B.S., Computer Science, Minor in Statistics</h4>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-tech-blue text-white px-3 py-1 rounded-full text-sm font-medium">2017 - 2021</span>
+                                    <span class="ml-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">GPA: 3.7/4.0 (Dean's List)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-tech-blue flex items-center glow-text">
+                    <i class="fas fa-code mr-4"></i> Technical Skills
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Programming Languages -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-laptop-code mr-2 text-tech-blue"></i> Programming Languages
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Java</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">SQL</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Kotlin</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">C/C++</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">C#</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Go</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">HTML/CSS</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Ruby</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Rust</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">R</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Assembly</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Frameworks & Tools -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-tools mr-2 text-tech-blue"></i> Frameworks & Tools
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Spring Framework</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Git</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Linux</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Flask</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Node.js</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">React</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Maven</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">OpenAPI</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Hibernate</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Docker</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Jenkins</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Postman</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">JUnit</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">TestNG</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ML & Cloud -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-brain mr-2 text-tech-blue"></i> Machine Learning & Cloud
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">PyTorch</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">TensorFlow</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Keras</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">AWS</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">GCP</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Kubernetes</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">MLflow</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Ray</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Hugging Face</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Apache Spark</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Airflow</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">ONNX</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">FastAPI</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Concepts -->
+                    <div class="section-card rounded-xl overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-lightbulb mr-2 text-tech-blue"></i> Concepts
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Distributed Systems</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Microservices</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">RESTful API</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">OpenTelemetry</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">BigQuery</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">MCP</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">Scikit-learn</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">LLMs</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">RAG</span>
+                                <span class="skill-badge text-white px-3 py-1 rounded-full text-sm font-medium">LoRA/QLoRA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-tech-blue flex items-center glow-text">
+                    <i class="fas fa-project-diagram mr-4"></i> Technical Projects
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Transformer QA -->
+                    <div class="section-card rounded-xl overflow-hidden project-gradient">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-semibold text-white">Transformer QA</h3>
+                                <i class="fas fa-robot text-tech-blue text-2xl"></i>
+                            </div>
+                            <p class="text-gray-400 mb-4">Domain-specific Question Answering system using LLMs</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Hugging Face</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">LlamaIndex</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">LoRA/QLoRA</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">FastAPI</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Docker</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                A domain-specific Question Answering (QA) system using the Hugging Face Transformers project as the knowledge base, leveraging LLMs (Llama-3.1-8B-Instruct and Qwen-2.5-14B-Instruct) with LlamaIndex for RAG.
+                            </p>
+                            <div class="flex items-center text-sm text-tech-blue">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                <span>Fine-tuned via LoRA & QLoRA, tracked with MLflow and Ray</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Graph-Based Cache-Augmented Generation -->
+                    <div class="section-card rounded-xl overflow-hidden project-gradient">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-semibold text-white">Graph-Based Cache-Augmented Generation</h3>
+                                <i class="fas fa-network-wired text-tech-blue text-2xl"></i>
+                            </div>
+                            <p class="text-gray-400 mb-4">Alternative to traditional RAG</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">LLMs</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Graph Embeddings</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Key-Value Caching</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Optimization</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                An alternative to traditional Retrieval-Augmented Generation (RAG) by utilizing LLM key-value caching instead of dynamic retrieval and leveraging graph embeddings to capture data relationships.
+                            </p>
+                            <div class="flex items-center text-sm text-tech-blue">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                <span>Optimizes context window usage, enhances efficiency, reduces latency</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Racetrack AI -->
+                    <div class="section-card rounded-xl overflow-hidden project-gradient">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-semibold text-white">Racetrack AI</h3>
+                                <i class="fas fa-car text-tech-blue text-2xl"></i>
+                            </div>
+                            <p class="text-gray-400 mb-4">AI for the Racetrack game</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Python</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Search Algorithms</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Heuristics</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Optimization</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                Python AI application that utilizes multiple search algorithms combined with self-designed and optimized heuristic functions to determine the optimal solutions for the Racetrack game.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Geolocation Database -->
+                    <div class="section-card rounded-xl overflow-hidden project-gradient">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-semibold text-white">Geolocation Database</h3>
+                                <i class="fas fa-database text-tech-blue text-2xl"></i>
+                            </div>
+                            <p class="text-gray-400 mb-4">Custom data structures for 2D map locations</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Java</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Data Structures</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">Scapegoat Tree</span>
+                                <span class="bg-tech-blue bg-opacity-20 text-tech-blue px-2 py-1 rounded text-xs font-medium">K-d Tree</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                Java implementation of a database of 2D map locations utilizing two self-designed data structures (Extended Scapegoat Tree and Extended Self-balancing K-d Tree).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-tech-dark py-8 border-t border-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="mailto:jason4huare@gmail.com" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/siyuan-zhang-8784a8153" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://github.com/Jasonzzzz28" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+                <p class="text-gray-500">
+                    © 2024 Siyuan (Jason) Zhang. All rights reserved.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Profile picture changer
+        const profilePic = document.getElementById('profile-pic');
+        const changePicBtn = document.getElementById('change-pic-btn');
+        const pics = [
+            'images/miko.jpeg',
+            'images/city.jpg',
+            'images/mountain.jpeg',
+            'images/family.jpg'
+        ];
+        let currentPicIndex = 0;
+
+        changePicBtn.addEventListener('click', () => {
+            currentPicIndex = (currentPicIndex + 1) % pics.length;
+            profilePic.src = pics[currentPicIndex];
+            
+            // Add animation class
+            profilePic.classList.add('animate-pulse');
+            setTimeout(() => {
+                profilePic.classList.remove('animate-pulse');
+            }, 500);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.classList.remove('shadow-md');
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.classList.add('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
