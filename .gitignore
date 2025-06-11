@@ -1,0 +1,5 @@
+local_files
+.DS_Store
+.env.local
+.vercel
+node_modules/
