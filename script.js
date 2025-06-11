@@ -172,7 +172,7 @@ async function generateResponse(question) {
     Question: ${question.toLowerCase()}
 
     Instructions:
-    1. Answer the question based only on the resume summary provided
+    1. Answer the question based only on the resume summary provided. But do not mention the resume summary is provided for context.
     2. Keep your response concise, confident, and professional
     3. If the question is not related to the resume, reply with "I can only answer questions about Siyuan's professional experience, skills, and projects."
     4. Your response should be promoting siyuan as a professional and skilled software engineer, not just a resume summary
